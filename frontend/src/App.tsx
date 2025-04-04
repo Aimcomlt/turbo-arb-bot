@@ -6,7 +6,7 @@ import {
   useConnect,
   useDisconnect,
 } from 'wagmi'
-import { injected } from '@wagmi/connectors'
+//import { injected } from '@wagmi/connectors'
 
 const App: React.FC = () => {
   const { address, isConnected } = useAccount()
