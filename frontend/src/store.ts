@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import strategyReducer from './features/strategies/strategySlice'
-//import executionReducer from './features/execution/executionSlice'
+import executionReducer from './features/execution/executionSlice'
 
 export const store = configureStore({
   reducer: {
     strategies: strategyReducer,
-    //execution: executionReducer,
+    execution: executionReducer,
   },
 })
 
