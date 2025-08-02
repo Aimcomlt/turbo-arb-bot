@@ -7,7 +7,7 @@
     "dev": "ts-node-dev --respawn src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "test": "echo \"No tests\""
+    "test": "node --loader ts-node/esm test/generateStrategyMetadata.test.ts"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
