@@ -1,12 +1,7 @@
 // strategySlice.ts – for reference
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-export interface Strategy {
-  id: number
-  name: string
-  tokenPair: string
-  profit: number
-}
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
+import type { Strategy } from '../../services/strategyService'
+import { fetchStrategies } from '../../services/strategyService'
 
 interface StrategyState {
   list: Strategy[]
@@ -20,21 +15,36 @@ const initialState: StrategyState = {
   isLoading: false,
 }
 
+export const loadStrategies = createAsyncThunk('strategies/load', async () => {
+  return await fetchStrategies()
+})
+
 const strategySlice = createSlice({
   name: 'strategies',
   initialState,
   reducers: {
-    setStrategies: (state, action: PayloadAction<Strategy[]>) => {
-      state.list = action.payload
-    },
     setActiveStrategy: (state, action: PayloadAction<number>) => {
       state.activeId = action.payload
     },
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loadStrategies.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(
+        loadStrategies.fulfilled,
+        (state, action: PayloadAction<Strategy[]>) => {
+          state.isLoading = false
+          state.list = action.payload
+        },
+      )
+      .addCase(loadStrategies.rejected, (state) => {
+        state.isLoading = false
+      })
   },
 })
 
-export const { setStrategies, setActiveStrategy, setLoading } = strategySlice.actions
+export const { setActiveStrategy } = strategySlice.actions
 export default strategySlice.reducer
+export { type Strategy }
