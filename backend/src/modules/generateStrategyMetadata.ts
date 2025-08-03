@@ -1,8 +1,4 @@
-export interface StrategyMetadata {
-  id: number;
-  name: string;
-  description: string;
-}
+import type { StrategyMetadata } from '../../../shared/types';
 
 function validateStrategyMetadata(data: unknown): StrategyMetadata {
   if (

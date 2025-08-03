@@ -1,10 +1,10 @@
 // strategySlice.ts – for reference
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import type { Strategy } from '../../services/strategyService'
+import type { StrategyMetadata } from '../../../../shared/types'
 import { fetchStrategies } from '../../services/strategyService'
 
 interface StrategyState {
-  list: Strategy[]
+  list: StrategyMetadata[]
   activeId: number | null
   isLoading: boolean
 }
@@ -34,7 +34,7 @@ const strategySlice = createSlice({
       })
       .addCase(
         loadStrategies.fulfilled,
-        (state, action: PayloadAction<Strategy[]>) => {
+        (state, action: PayloadAction<StrategyMetadata[]>) => {
           state.isLoading = false
           state.list = action.payload
         },
@@ -47,4 +47,4 @@ const strategySlice = createSlice({
 
 export const { setActiveStrategy } = strategySlice.actions
 export default strategySlice.reducer
-export { type Strategy }
+export { type StrategyMetadata }
