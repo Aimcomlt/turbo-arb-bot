@@ -1,5 +1,6 @@
 backend/node_modules/
 backend/dist/
+backend/abi-cache/
 frontend/node_modules/
 frontend/dist/
 contracts/node_modules/
