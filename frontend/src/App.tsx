@@ -73,7 +73,8 @@ const App: React.FC = () => {
                 <ul className="list-disc pl-4">
                   {strategies.map((s) => (
                     <li key={s.id}>
-                      {s.name} - {s.tokenPair}
+                      {s.name}
+                      {s.tokenPair ? ` - ${s.tokenPair}` : ''}
                     </li>
                   ))}
                 </ul>

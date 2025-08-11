@@ -36,7 +36,10 @@ const strategySlice = createSlice({
         loadStrategies.fulfilled,
         (state, action: PayloadAction<StrategyMetadata[]>) => {
           state.isLoading = false
-          state.list = action.payload
+          state.list = action.payload.map((s) => ({
+            ...s,
+            tokenPair: s.tokenPair ?? '',
+          }))
         },
       )
       .addCase(loadStrategies.rejected, (state) => {
