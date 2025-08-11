@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 // Simple on-disk cache directory.
-const CACHE_DIR = path.resolve(process.cwd(), 'backend', '.abi-cache');
+const CACHE_DIR = path.resolve(process.cwd(), 'backend', 'abi-cache');
 
 /**
  * Fetches the ABI for a contract from Etherscan.  Results are cached on disk to
