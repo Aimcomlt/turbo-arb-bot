@@ -6,8 +6,7 @@ import {
   useConnect,
   useDisconnect,
 } from 'wagmi'
-import { useDispatch, useSelector } from 'react-redux'
-import type { AppDispatch } from './store'
+import { useAppDispatch, useAppSelector } from './hooks'
 import { loadStrategies } from './features/strategies/strategySlice'
 import {
   selectStrategies,
@@ -19,9 +18,9 @@ const App: React.FC = () => {
   const { connect, connectors, isPending, error } = useConnect()
   const { disconnect } = useDisconnect()
 
-  const dispatch = useDispatch<AppDispatch>()
-  const strategies = useSelector(selectStrategies)
-  const strategiesLoading = useSelector(selectIsLoading)
+  const dispatch = useAppDispatch()
+  const strategies = useAppSelector(selectStrategies)
+  const strategiesLoading = useAppSelector(selectIsLoading)
 
   // Pick the injected connector (MetaMask)
   const injectedConnector = connectors.find((c) => c.id === 'injected')
